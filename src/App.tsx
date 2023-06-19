@@ -2,10 +2,9 @@
 import styled from "styled-components";
 import Main from "./components/Main";
 import Header from "./components/Header";
-import { fetchPosts } from "./components/API/fakeAPI";
+import { fetchTicket } from "./components/API/fakeAPI";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-
 const AppContainer = styled.div`
     width: 100vw;
     height: auto;
@@ -15,11 +14,12 @@ const AppContainer = styled.div`
     justify-content: center;
     gap: 20px 50px;
 `;
-function App() {
+function App(): JSX.Element {
     const dispatch = useDispatch();
-    useEffect(() => {
-        
-        dispatch(fetchPosts());
+
+
+    useEffect((): void => {
+        dispatch(fetchTicket());
     }, []);
 
     return (

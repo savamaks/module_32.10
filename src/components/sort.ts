@@ -1,11 +1,13 @@
-export const sortPrice = (data:any):Array<object> => {
-    return  data.sort((a: any, b: any) => (+a.price > +b.price ? 1 : -1))
-}
+import { Ticket } from "./API/dataApi";
 
-export const sortOptimal = (data:any):Array<object> => {
-    return  data.sort((a: any, b: any) => (+a.transplant  > +b.transplant  ? 1 : -1))
-}
+export const sortPrice = (data: Array<Ticket>): Array<Ticket> => {
+    return data.sort((a: Ticket, b: Ticket) => (+a.price > +b.price ? 1 : -1));
+};
 
-export const sortFast = (data:any):Array<object> => {
-    return  data.sort((a: any, b: any) => (+a.duration  > +b.duration  ? 1 : -1))
-}
+export const sortOptimal = (data: Array<Ticket>): Array<Ticket> => {
+    return data.sort((a: Ticket, b: Ticket) => (+a.transplant > +b.transplant ? 1 : -1));
+};
+
+export const sortFast = (data: Array<Ticket>): Array<Ticket> => {
+    return data.sort((a: Ticket, b: Ticket) => (+a.duration > +b.duration ? 1 : -1));
+};

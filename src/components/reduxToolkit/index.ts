@@ -2,7 +2,7 @@ import { combineReducers,configureStore } from "@reduxjs/toolkit";
 import reducer from './slice'
 
 const rootReducer = combineReducers({
-    reducer:reducer
+    ticket:reducer,
 })
 
 export const store = configureStore({

@@ -5,10 +5,17 @@ const HeaderContainer = styled.header`
     display: flex;
     flex: 100%;
     align-items: center;
+    padding-top: 50px;
+    margin-left: 10%;
+    @media (max-width: 800px) {
+        justify-content: center;
+    }
 `;
 const Title = styled.h1`
-
-margin-left: 34px;
+    @media (max-width: 800px) {
+        display: none;
+    }
+    margin-left: 34px;
     font-family: "Inter";
     font-style: normal;
     font-weight: 700;
@@ -17,7 +24,7 @@ margin-left: 34px;
     color: #4e148c;
 `;
 const Image = styled.img``;
-const Header = () => {
+const Header = ():JSX.Element => {
     return (
         <HeaderContainer>
             <Image src={airplan} alt="airplan" />

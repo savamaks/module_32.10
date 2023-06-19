@@ -1,8 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { cheap, fast, optimal } from "./reduxToolkit/slice";
+import {  cheap, fast, optimal } from "./reduxToolkit/slice";
 
 const Container = styled.div`
+    width: 100%;
+
     grid-area: b;
     display: flex;
     flex-wrap: nowrap;
@@ -30,7 +32,12 @@ const Button = styled.button<{ bg_image: string; color: string }>`
     line-height: 19px;
     color: ${(props) => props.color};
     border: 1px solid #4e148c;
-    background-color: ${(props) => props.bg_image};
+    background-color: ${(props):string => props.bg_image};
+    @media (max-width: 600px) {
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 15px;
+    }
 `;
 
 const ButtonContainer = (): JSX.Element => {
@@ -40,22 +47,24 @@ const ButtonContainer = (): JSX.Element => {
         dispatch(cheap());
     };
 
-    const sortTransplant = () => {
+    const sortTransplant = ():void => {
         dispatch(optimal());
     };
 
-    const sortFast = () => {
+    const sortFast = ():void => {
         dispatch(fast());
     };
 
-    const stateButton = useSelector((state) => state.reducer.stateButton);
+    const {stateButton} = useSelector((state:any) => state.ticket);
     return (
         <Container>
             <Button
                 bg_image={stateButton === "cheap" ? "#4e148c" : "#e8ebf2"}
                 color={stateButton === "cheap" ? "#f7f9f7" : "inherit"}
                 onClick={sortPrice}
-            >Самый дешевый</Button>
+            >
+                Самый дешевый
+            </Button>
             <Button
                 bg_image={stateButton === "fast" ? "#4e148c" : "#e8ebf2"}
                 color={stateButton === "fast" ? "#f7f9f7" : "inherit"}

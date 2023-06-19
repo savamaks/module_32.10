@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import { SaidBarContainer,ChekedBox,Title,BoxInput,Input,InputCompany,Text } from "./style";
+import { SaidBarContainer,CheckedBox,Title,BoxInput,Input,InputCompany,Text } from "./style";
 
 import { pobeda, s7Airlines, redWings, noTransplant, oneTransplant, twoTransplant, threeTransplant } from "../reduxToolkit/slice";
 
@@ -14,27 +14,23 @@ const OneTransplant = "1 пересадка";
 const TwoTransplant = "2 пересадки";
 const ThreeTransplant = "3 пересадки";
 
-interface CompanyType {
-    pobeda: boolean;
-    s7Airlines: boolean;
-    redWings: boolean;
-}
+
 
 const SaidBar = (): JSX.Element => {
     const dispatch = useDispatch();
-    const transplant = useSelector((state) => state.reducer.stateTransplant);
-    const company = useSelector((state) => state.reducer.stateCompany);
+    const {stateTransplant,stateCompany} = useSelector((state:any) => state.ticket);
+    
 
     return (
         <SaidBarContainer>
-            <ChekedBox>
+            <CheckedBox>
                 <Title>Количество пересадок</Title>
                 <BoxInput>
                     <Input
                         type="checkbox"
                         value={0}
-                        checked={transplant.no}
-                        onChange={() => {
+                        checked={stateTransplant.no}
+                        onChange={():void => {
                             dispatch(noTransplant());
                         }}
                         name="NO_TRANSPLANT"
@@ -46,8 +42,8 @@ const SaidBar = (): JSX.Element => {
                     <Input
                         type="checkbox"
                         value={1}
-                        checked={transplant.one}
-                        onChange={() => {
+                        checked={stateTransplant.one}
+                        onChange={():void => {
                             dispatch(oneTransplant());
                         }}
                         name="ONE_TRANSPLANT"
@@ -59,8 +55,8 @@ const SaidBar = (): JSX.Element => {
                     <Input
                         type="checkbox"
                         value={2}
-                        checked={transplant.two}
-                        onChange={() => {
+                        checked={stateTransplant.two}
+                        onChange={():void => {
                             dispatch(twoTransplant());
                         }}
                         name="TWO_TRANSPLANT"
@@ -72,8 +68,8 @@ const SaidBar = (): JSX.Element => {
                     <Input
                         type="checkbox"
                         value={3}
-                        checked={transplant.three}
-                        onChange={() => {
+                        checked={stateTransplant.three}
+                        onChange={():void => {
                             dispatch(threeTransplant());
                         }}
                         name="THREE_TRANSPLANT"
@@ -81,16 +77,16 @@ const SaidBar = (): JSX.Element => {
                     />
                     <Text htmlFor={ThreeTransplant}>{ThreeTransplant}</Text>
                 </BoxInput>
-            </ChekedBox>
-            <ChekedBox>
+            </CheckedBox>
+            <CheckedBox>
                 <Title>Компании</Title>
 
                 <BoxInput>
                     <InputCompany
-                        onChange={() => {
+                        onChange={():void => {
                             dispatch(pobeda());
                         }}
-                        checked={company.pobeda}
+                        checked={stateCompany.pobeda}
                         type="checkbox"
                         name="POBEDA"
                         id={Pobeda}
@@ -99,10 +95,10 @@ const SaidBar = (): JSX.Element => {
                 </BoxInput>
                 <BoxInput>
                     <InputCompany
-                        onChange={() => {
+                        onChange={():void => {
                             dispatch(s7Airlines());
                         }}
-                        checked={company.s7Airlines}
+                        checked={stateCompany.s7Airlines}
                         type="checkbox"
                         name="S7AIRLINES"
                         id={S7Airlines}
@@ -111,17 +107,17 @@ const SaidBar = (): JSX.Element => {
                 </BoxInput>
                 <BoxInput>
                     <InputCompany
-                        onChange={() => {
+                        onChange={():void => {
                             dispatch(redWings());
                         }}
-                        checked={company.redWings}
+                        checked={stateCompany.redWings}
                         type="checkbox"
                         name="RED_WINGS"
                         id={RedWings}
                     />
                     <Text htmlFor={RedWings}>{RedWings}</Text>
                 </BoxInput>
-            </ChekedBox>
+            </CheckedBox>
         </SaidBarContainer>
     );
 };

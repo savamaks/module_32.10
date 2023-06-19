@@ -1,9 +1,9 @@
-interface TicketTime {
+export interface TicketTime {
     startTime: string;
     endTime: string;
 }
 
-interface Ticket {
+export interface Ticket {
     id: number;
     from: string;
     to: string;
@@ -11,10 +11,36 @@ interface Ticket {
     price: number;
     time: TicketTime;
     duration: number;
-    transplant: number | null;
+    transplant: number;
 }
 
 export const data: Array<Ticket> = [
+    {
+        id: 9,
+        from: "London",
+        to: "Jakarta",
+        company: "Победа",
+        price: 155000,
+        time: {
+            startTime: "10:00",
+            endTime: "17:30",
+        },
+        duration: 280,
+        transplant: 3,
+    },
+    {
+        id: 6,
+        from: "Rim",
+        to: "Praha",
+        company: "S7 Airlines",
+        price: 73200,
+        time: {
+            startTime: "18:00",
+            endTime: "20:50",
+        },
+        duration: 425,
+        transplant: 1,
+    },
     {
         id: 1,
         from: "Rim",
@@ -69,6 +95,19 @@ export const data: Array<Ticket> = [
         transplant: 3,
     },
     {
+        id: 11,
+        from: "Berlin",
+        to: "Moscow",
+        company: "Победа",
+        price: 85300,
+        time: {
+            startTime: "12:00",
+            endTime: "16:30",
+        },
+        duration: 350,
+        transplant: 0,
+    },
+    {
         id: 5,
         from: "Naples",
         to: "Tokyo",
@@ -81,19 +120,7 @@ export const data: Array<Ticket> = [
         duration: 290,
         transplant: 0,
     },
-    {
-        id: 6,
-        from: "Rim",
-        to: "Praha",
-        company: "S7 Airlines",
-        price: 73200,
-        time: {
-            startTime: "18:00",
-            endTime: "20:50",
-        },
-        duration: 425,
-        transplant: 1,
-    },
+
     {
         id: 7,
         from: "Berlin",
@@ -120,19 +147,7 @@ export const data: Array<Ticket> = [
         duration: 150,
         transplant: 0,
     },
-    {
-        id: 9,
-        from: "London",
-        to: "Jakarta",
-        company: "Победа",
-        price: 155000,
-        time: {
-            startTime: "10:00",
-            endTime: "17:30",
-        },
-        duration: 280,
-        transplant: 3,
-    },
+
     {
         id: 10,
         from: "Bangkok",
@@ -145,18 +160,5 @@ export const data: Array<Ticket> = [
         },
         duration: 160,
         transplant: 1,
-    },
-    {
-        id: 1,
-        from: "Berlin",
-        to: "Moscow",
-        company: "Победа",
-        price: 85300,
-        time: {
-            startTime: "12:00",
-            endTime: "16:30",
-        },
-        duration: 350,
-        transplant: 0,
     },
 ];
