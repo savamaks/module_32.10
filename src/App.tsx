@@ -2,7 +2,7 @@
 import styled from "styled-components";
 import Main from "./components/Main";
 import Header from "./components/Header";
-import { fetchTicket, fetchTodos } from "./components/API/fakeAPI";
+import { fetchTicket } from "./components/API/fakeAPI";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 const AppContainer = styled.div`
@@ -22,9 +22,6 @@ function App(): JSX.Element {
         dispatch(fetchTicket());
     }, []);
 
-    useEffect(()=>{
-        dispatch(fetchTodos())
-    },[])
     return (
         <AppContainer>
             <Header />

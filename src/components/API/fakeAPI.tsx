@@ -1,4 +1,3 @@
-import { setAllTodo } from "../reduxToolkit/sliceTodos";
 import { data } from "./dataApi";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
@@ -20,12 +19,3 @@ export const fetchTicket: any = createAsyncThunk(
 );
 
 
-export const fetchTodos: any = createAsyncThunk(
-    "requestJSON",
-
-    async (_,{dispatch}) => {
-        const response =  await fakeApiRequest(data)
-        // const dataS = await response.json();
-        dispatch(setAllTodo(response))
-    }
-);

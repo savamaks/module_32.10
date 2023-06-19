@@ -8,7 +8,6 @@ import SaidBar from "../components/SaidBar/SaidBar";
 import { useMediaQuery } from "react-responsive";
 import SaidBarMobile from "./SaidBarMobile/SaidBarMobile";
 import { Ticket } from "./API/dataApi";
-import{ selectAll, selectById, selectEntities, selectIds, selectTotal} from './reduxToolkit/sliceTodos'
 
 const MainContainer = styled.main`
     width: 100%;
