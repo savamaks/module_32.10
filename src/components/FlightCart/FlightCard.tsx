@@ -3,6 +3,7 @@ import pobeda from "../icons/pobeda.svg";
 import s7 from "../icons/s7.svg";
 import rw from "../icons/rw.svg";
 import { redactDuration } from "./redactDuration";
+import { Ticket } from "../API/dataApi";
 
 const FlightCardDiv = styled.div`
     display: flex;
@@ -17,6 +18,7 @@ const FlightCardDiv = styled.div`
 `;
 
 const Price = styled.p`
+    width: max-content;
     text-align: center;
     font-family: "Inter";
     font-style: normal;
@@ -27,16 +29,18 @@ const Price = styled.p`
 `;
 const Label = styled.img`
     text-align: end;
-    width: 200px;
-    height: 26px;
+    width: 30%;
+    height: auto;
 `;
 const BlockText = styled.div`
+    width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    gap: 0 150px;
+    justify-content: space-between;
+    gap: 15px;
 `;
 const Box = styled.div`
+    min-width: max-content;
     display: flex;
     flex-direction: column;
     gap: 9px;
@@ -60,25 +64,26 @@ const Text = styled.p`
 `;
 
 
+interface FlightCardType {
+    data:Ticket
+}
 
-const FlightCard = ({ data }: any) => {
-
+const FlightCard = ({ data }: FlightCardType):JSX.Element => {
     const duration = redactDuration(data.duration);
-    const fromText = data.from.slice(0,3).toUpperCase()
-    const toText = data.to.slice(0,3).toUpperCase()
-    let imageCompany 
-    if(data.company ==='Победа'){
-        imageCompany = pobeda
-    } else if(data.company ==='Red Wings'){
-        imageCompany = rw
-    } else if(data.company ==='S7 Airlines'){
-        imageCompany = s7
+    const fromText = data.from.slice(0, 3).toUpperCase();
+    const toText = data.to.slice(0, 3).toUpperCase();
+    let imageCompany;
+    if (data.company === "Победа") {
+        imageCompany = pobeda;
+    } else if (data.company === "Red Wings") {
+        imageCompany = rw;
+    } else if (data.company === "S7 Airlines") {
+        imageCompany = s7;
     }
     return (
         <FlightCardDiv>
             <BlockText>
                 <Price>{data.price} Р</Price>
-
                 <Label src={imageCompany} alt={data.company} />
             </BlockText>
 

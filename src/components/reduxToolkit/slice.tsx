@@ -1,8 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
+import { fetchTicket } from "../API/fakeAPI";
 
-const reducer = createSlice({
-    name: "reduc",
+const Red = createSlice({
+    name: "ticket",
     initialState: {
+        status: "",
+        error: "",
         stateButton: "cheap",
         stateCompany: {
             pobeda: true,
@@ -15,47 +18,80 @@ const reducer = createSlice({
             two: true,
             three: true,
         },
-        ticket: [],
-        
+        dataApi: [],
+        transplantActive: "любое кол-во пересадок",
+        companyActive: "Любая авиакомпания,",
+       
     },
     reducers: {
-        cheap(state) {
+        cheap(state): void {
             state.stateButton = "cheap";
         },
-        fast(state) {
+        fast(state): void {
             state.stateButton = "fast";
         },
-        optimal(state) {
+        optimal(state): void {
             state.stateButton = "optimal";
         },
 
-        pobeda(state) {
-            state.stateCompany.pobeda=!state.stateCompany.pobeda
+        pobeda(state): void {
+            state.stateCompany.pobeda = !state.stateCompany.pobeda;
         },
-        s7Airlines(state) {
-            state.stateCompany.s7Airlines = !state.stateCompany.s7Airlines
+        s7Airlines(state): void {
+            state.stateCompany.s7Airlines = !state.stateCompany.s7Airlines;
         },
-        redWings(state) {
-            state.stateCompany.redWings = !state.stateCompany.redWings
+        redWings(state): void {
+            state.stateCompany.redWings = !state.stateCompany.redWings;
         },
 
-        noTransplant(state) {
-            state.stateTransplant.no  =  !state.stateTransplant.no;
+        noTransplant(state): void {
+            state.stateTransplant.no = !state.stateTransplant.no;
         },
-        oneTransplant(state) {
-            state.stateTransplant.one =!state.stateTransplant.one 
+        oneTransplant(state): void {
+            state.stateTransplant.one = !state.stateTransplant.one;
         },
-        twoTransplant(state) {
-            state.stateTransplant.two =! state.stateTransplant.two 
+        twoTransplant(state): void {
+            state.stateTransplant.two = !state.stateTransplant.two;
         },
-        threeTransplant(state) {
-            state.stateTransplant.three =! state.stateTransplant.three 
+        threeTransplant(state): void {
+            state.stateTransplant.three = !state.stateTransplant.three;
         },
-        addTicket(state,action) {
-            state.ticket= action.payload
+        addPanelNameCompany(state, action): void {
+            state.companyActive = action.payload;
         },
+        addPanelTransplant(state, action): void {
+            state.transplantActive = action.payload;
+        },
+    },
+    extraReducers: {
+        [fetchTicket.pending]: (state) => {
+            state.status = "loading";
+            state.error = "";
+        },
+        [fetchTicket.fulfilled]: (state, action) => {
+            state.dataApi = action.payload;
+            state.status = "true";
+        },
+        [fetchTicket.rejected]: (state) => {
+            state.status = "";
+            state.error = "error";
+        },
+
     },
 });
 
-export default reducer.reducer;
-export const {addTicket, cheap, fast, optimal, pobeda, s7Airlines, redWings, noTransplant, oneTransplant, twoTransplant, threeTransplant } = reducer.actions;
+export default Red.reducer;
+export const {
+    addPanelTransplant,
+    addPanelNameCompany,
+    cheap,
+    fast,
+    optimal,
+    pobeda,
+    s7Airlines,
+    redWings,
+    noTransplant,
+    oneTransplant,
+    twoTransplant,
+    threeTransplant,
+} = Red.actions;

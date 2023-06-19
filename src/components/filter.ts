@@ -2,9 +2,9 @@ import {sortPrice,sortOptimal,sortFast} from "./sort";
 
 const filter = (data: any, stateTransplant: any, stateCompany: any, stateButton: any)=> {
     const resultTransplant: Array<object> = [];
-    const result: any = [];
+    const result: Array<object> = [];
 
-    data.map((el: any) => {
+    data.map((el: any):void => {
         if (stateTransplant.no && el.transplant === 0) {
             resultTransplant.push(el);
         } else if (stateTransplant.one && el.transplant === 1) {
@@ -16,7 +16,7 @@ const filter = (data: any, stateTransplant: any, stateCompany: any, stateButton:
         }
     });
 
-    resultTransplant.map((el: any) => {
+    resultTransplant.map((el: any):void => {
         if (stateCompany.pobeda && el.company === "Победа") {
             result.push(el);
         } else if (stateCompany.s7Airlines && el.company === "S7 Airlines") {

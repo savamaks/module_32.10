@@ -1,23 +1,31 @@
+import { setAllTodo } from "../reduxToolkit/sliceTodos";
 import { data } from "./dataApi";
-import { addTicket } from "../reduxToolkit/slice";
-function fakeApiRequest(data: any): Promise<unknown> {
+import { createAsyncThunk } from "@reduxjs/toolkit";
+
+export function fakeApiRequest(data: any): Promise<unknown> {
     return new Promise((resolve): void => {
         setTimeout((): void => {
             resolve(data);
-        }, 2000);
+        }, 1500);
     });
 }
 
-export function fetchPosts() {
-    return async (dispatch: any) => {
+export const fetchTicket: any = createAsyncThunk(
+    "requestApi",
 
-        try {
-            // Имитация асинхронного запроса к серверу
-            const response = await fakeApiRequest(data);
+    async () => {
+        const response = await fakeApiRequest(data);
+        return response;
+    }
+);
 
-            dispatch(addTicket(response));
-        } catch (error) {
-            dispatch();
-        }
-    };
-}
+
+export const fetchTodos: any = createAsyncThunk(
+    "requestJSON",
+
+    async (_,{dispatch}) => {
+        const response =  await fakeApiRequest(data)
+        // const dataS = await response.json();
+        dispatch(setAllTodo(response))
+    }
+);
