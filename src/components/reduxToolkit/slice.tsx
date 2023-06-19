@@ -1,6 +1,16 @@
 import {  createSlice } from "@reduxjs/toolkit";
 import { fetchTicket } from "../API/fakeAPI";
+import {Ticket,TicketTime} from '../API/dataApi'
 
+type actionType =
+    {
+        payload: any;
+        type: string;
+    }
+type actionTypeData ={
+    payload: [];
+    type: string;
+}
 const Red = createSlice({
     name: "ticket",
     initialState: {
@@ -56,10 +66,10 @@ const Red = createSlice({
         threeTransplant(state): void {
             state.stateTransplant.three = !state.stateTransplant.three;
         },
-        addPanelNameCompany(state, action): void {
+        addPanelNameCompany(state, action:actionType): void {
             state.companyActive = action.payload;
         },
-        addPanelTransplant(state, action): void {
+        addPanelTransplant(state, action:actionType): void {
             state.transplantActive = action.payload;
         },
     },
@@ -68,7 +78,7 @@ const Red = createSlice({
             state.status = "loading";
             state.error = "";
         },
-        [fetchTicket.fulfilled]: (state, action) => {
+        [fetchTicket.fulfilled]: (state, action:actionTypeData) => {
             state.dataApi = action.payload;
             state.status = "true";
         },
