@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import FlightCard from "./FlightCart/FlightCard";
-import { useSelector } from "react-redux";
+import { useSelector,TypedUseSelectorHook } from "react-redux";
 import { useEffect, useState } from "react";
 import filter from "./filter";
 import ButtonContainer from "./ButtonContainer";
@@ -8,6 +8,7 @@ import SaidBar from "../components/SaidBar/SaidBar";
 import { useMediaQuery } from "react-responsive";
 import SaidBarMobile from "./SaidBarMobile/SaidBarMobile";
 import { Ticket } from "./API/dataApi";
+import {RootState} from './reduxToolkit/index'
 
 const MainContainer = styled.main`
     width: 100%;
@@ -50,7 +51,7 @@ const Main = (): JSX.Element => {
     const isDesktopOrLaptop = useMediaQuery({
         query: "(max-width: 800px)",
     });
-    const { dataApi, stateTransplant, stateCompany, stateButton, status, error } = useSelector((state: any) => state.ticket);
+    const { dataApi, stateTransplant, stateCompany, stateButton, status, error } = useSelector((state: TypedUseSelectorHook<RootState>) => state.ticket);
     // const{}=useSelector((state:any=>state.))
     useEffect((): void => {
         const result = filter(dataApi, stateTransplant, stateCompany, stateButton);

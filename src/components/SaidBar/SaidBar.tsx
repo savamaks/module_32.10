@@ -1,8 +1,9 @@
-import { useDispatch, useSelector } from "react-redux";
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
 import { SaidBarContainer,CheckedBox,Title,BoxInput,Input,InputCompany,Text } from "./style";
 
 import { pobeda, s7Airlines, redWings, noTransplant, oneTransplant, twoTransplant, threeTransplant } from "../reduxToolkit/slice";
+import {RootState} from '../reduxToolkit/index'
 
 
 const Pobeda = "Победа";
@@ -18,7 +19,7 @@ const ThreeTransplant = "3 пересадки";
 
 const SaidBar = (): JSX.Element => {
     const dispatch = useDispatch();
-    const {stateTransplant,stateCompany} = useSelector((state:any) => state.ticket);
+    const {stateTransplant,stateCompany} = useSelector((state:TypedUseSelectorHook<RootState>) => state.ticket);
     
 
     return (

@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import {
     addPanelTransplant,
     addPanelNameCompany,
@@ -14,6 +14,7 @@ import arrowBottom from "../icons/arrowBottom.svg";
 import { useEffect, useState } from "react";
 import { Container, Box, TitleBox, Title, Text, CheckedBox, BoxInput, InputCompany, Button, Block, Input } from "./style";
 import { useMediaQuery } from "react-responsive";
+import {RootState} from '../reduxToolkit/index'
 
 const Pobeda = "Победа";
 const S7Airlines = "S7 Airlines";
@@ -28,7 +29,7 @@ const SaidBarMobile = (): JSX.Element => {
     const [panel, setPanel] = useState(false);
 
     const dispatch = useDispatch();
-    const {stateTransplant,stateCompany,companyActive,transplantActive} = useSelector((state: any) => state.ticket);
+    const {stateTransplant,stateCompany,companyActive,transplantActive} = useSelector((state: TypedUseSelectorHook<RootState>) => state.ticket);
 
     const isDesktopOrLaptop = useMediaQuery({
         query: "(max-width: 600px)",

@@ -1,6 +1,7 @@
-import { useDispatch, useSelector } from "react-redux";
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import {  cheap, fast, optimal } from "./reduxToolkit/slice";
+import {RootState} from './reduxToolkit/index'
 
 const Container = styled.div`
     width: 100%;
@@ -55,7 +56,7 @@ const ButtonContainer = (): JSX.Element => {
         dispatch(fast());
     };
 
-    const {stateButton} = useSelector((state:any) => state.ticket);
+    const {stateButton} = useSelector((state:TypedUseSelectorHook<RootState>) => state.ticket);
     return (
         <Container>
             <Button
